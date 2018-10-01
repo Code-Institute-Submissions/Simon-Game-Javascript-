@@ -1,0 +1,24 @@
+/*-------- General --------- */
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+/*-------- Heading --------- */
+.s-title {
+    width: 100%;
+    font-family: 'Audiowide', cursive;
+    font-size: 40pt;
+    text-align: center;
+}
+/*-------- Sectiion -------- */
+.s-container {
+    height: 500px;
+    width: 40%;
+    border-radius: 120px 120px 120px 120px;
+    -moz-border-radius: 120px 120px 120px 120px;
+    -webkit-border-radius: 120px 120px 120px 120px;
+    background-color: #ccc6ba;
+    border-style:solid;
+    border-color: #000000;
+}
+
+
+
+/*-------- Footer ---------- */
