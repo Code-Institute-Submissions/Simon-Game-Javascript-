@@ -1,20 +1,34 @@
 // variables
 var correctVer = []
 var userVer = []
-var round = 2
-var maxRound = 20
+var round = 0
+var maxRound = 1
 
-// Random number generator
-var lightFlash = Math.floor(Math.random() *5);
-
+// Step through rounds
+for (round; round <= maxRound; round++) {
+// Random number generator and array vs round
+    while (correctVer.length < round) {
+            var lightFlash = Math.floor(Math.random() *4);
 // Create correctVer Array
-correctVer.push(lightFlash);
-// Check correctVer.length against round 
-if (correctVer.length == round) {
-    console.log (correctVer)
-} else {
-    console.log ("more lights please")
+            correctVer.push(lightFlash);
+            var lit = document.getElementById("light"+correctVer[round]);
+
+                    
+                
+    }
+
+
 }
+        
+
+console.log(correctVer);
+
+
+// Check correctVer.length against round 
+
+
+
+
 // correctVer to lights
 
 // correctVer to userVer
