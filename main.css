@@ -1,6 +1,8 @@
-/*-------- General --------- */
-
+/*-------- General -----------*/
+/*-------- Simon Font --------*/
 @import url('https://fonts.googleapis.com/css?family=Audiowide');
+/*-------- Display Font ------*/
+@import url('https://fonts.googleapis.com/css?family=Wallpoet');
 
 /*-------- Heading --------- */
 
@@ -11,11 +13,12 @@
     text-align: center;
 }
 
-/*-------- Sectiion -------- */
+/*-------- Section -------- */
 
 .game-container {
+    position: relative;
     height: 500px;
-    width: 80%;
+    width: 500px;
     border-radius: 60px 60px 60px 60px;
     -moz-border-radius: 60px 60px 60px 60px;
     -webkit-border-radius: 60px 60px 60px 60px;
@@ -33,8 +36,9 @@
 }
 
 .game-box {
-    width: 40%;
-    margin:5% 4.5% 3% 4.5%;
+    width: 196px;
+    height : 198px;
+    margin:25px;
     border-radius:40px;
     border-width: 2px;
     border-style: solid
@@ -43,30 +47,31 @@
 
 
 
-.g-0 {
+.light0 {
     background-color: yellow ;
 }
 
-.g-1 {
+.light1 {
     background-color: blue ;
 }
-.g-2 {
+.light2 {
     background-color: red ;
 }
-.g-3 {
+.light3 {
     background-color: green ;
 }
 
 .score-board {
     position: absolute;
     background-color:#ccc6ba ;
-    width: 30%;
-    height: 45%;
+    width: 200px;
+    height: 200px;
     border-radius: 100%;
     border-width: 2px;
     border-style: solid;
-    z-index: +1
-    left:30%;
+    z-index: +1;
+    left:150px;
+    top:150px;
 }
 
 /*-------- Footer ---------- */
