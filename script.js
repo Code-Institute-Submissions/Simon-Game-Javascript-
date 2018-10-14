@@ -4,24 +4,25 @@ var userVer = []
 var round = 0
 var maxRound = 1
 
+
+//init
+function init () {
 // Step through rounds
-for (round; round <= maxRound; round++) {
-// Random number generator and array vs round
-    while (correctVer.length < round) {
-            var lightFlash = Math.floor(Math.random() *4);
-// Create correctVer Array
-            correctVer.push(lightFlash);
-            var lit = document.getElementById("light"+correctVer[round]);
-
-                    
-                
+    for (round; round <= maxRound; round++) {
+    // Random number generator and array vs round
+        while (correctVer.length < round) {
+                var lightFlash = Math.floor(Math.random() *4);
+    // Create correctVer Array
+                correctVer.push(lightFlash);
+                var lit = document.getElementById("light"+lightFlash);
+                lit.setAttribute("id", "lit-square");
+        }
+    
+    
     }
+}        
 
-
-}
-        
-
-console.log(correctVer);
+window.onload = init;
 
 
 // Check correctVer.length against round 
