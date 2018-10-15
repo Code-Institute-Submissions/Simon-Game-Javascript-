@@ -4,38 +4,29 @@ var userVer = []
 var round = 0
 var maxRound = 1
 
-
-//init
-function init () {
-// Step through rounds
+// runLights Function
+function runLights() {
     for (round; round <= maxRound; round++) {
-    // Random number generator and array vs round
         while (correctVer.length < round) {
-                var lightFlash = Math.floor(Math.random() *4);
-    // Create correctVer Array
-                correctVer.push(lightFlash);
-                
-                
-                
-            //   ==== Light Flash Intel
-       //         var lit = document.getElementById("light"+lightFlash);
-         //       lit.style.backgroundColor = "black";
-      //          lit.removeAttribute("id", "lit-square");
-                
+            var lightFlash = Math.floor(Math.random() *4);
+            correctVer.push(lightFlash);    
         }
     }
-}        
+}
 
-window.onload = init;
-
-
-// Check correctVer.length against round 
-
+function endGame() {
+    document.getElementByID("game-round").innerHtml(maxRound);
+}
 
 
+runLights();
+console.log(correctVer);
 
-
-
-// correctVer to userVer
-
-// end - ourput Round
+function checkLights() {
+    if(correctVer == userVer) {
+        maxRound++;
+        runLights();
+    } else {
+        endGame();
+    }
+}
