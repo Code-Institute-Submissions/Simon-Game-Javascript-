@@ -14,11 +14,15 @@ function init () {
                 var lightFlash = Math.floor(Math.random() *4);
     // Create correctVer Array
                 correctVer.push(lightFlash);
-                var lit = document.getElementById("light"+lightFlash);
-                lit.setAttribute("id", "lit-square");
+                
+                
+                
+            //   ==== Light Flash Intel
+       //         var lit = document.getElementById("light"+lightFlash);
+         //       lit.style.backgroundColor = "black";
+      //          lit.removeAttribute("id", "lit-square");
+                
         }
-    
-    
     }
 }        
 
@@ -30,7 +34,7 @@ window.onload = init;
 
 
 
-// correctVer to lights
+
 
 // correctVer to userVer
 

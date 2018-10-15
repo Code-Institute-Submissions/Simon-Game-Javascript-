@@ -15,7 +15,7 @@
 
 /*-------- Section -------- */
 
-.game-container {
+/*.game-container {
     position: relative;
     height: 500px;
     width: 500px;
@@ -27,7 +27,7 @@
     border-color: #000000;
     margin-left: 10%;
     margin-right: 10%;
-}
+}*/
 
 .flex-container {   
     display: flex;
@@ -45,27 +45,25 @@
     
 }
 
-
-
-#light0 {
+.box-yellow {
     background-color: yellow ;
 }
 
-#light1 {
+.box-blue {
     background-color: blue ;
 }
-#light2 {
+.box-red {
     background-color: red ;
 }
-#light3 {
+.box-green {
     background-color: green ;
 }
 
-.lit-square {
+#lit-square {
     background-color: black ;
 }
 
-.score-board {
+/*.score-board {
     position: absolute;
     background-color:#ccc6ba ;
     width: 200px;
@@ -76,6 +74,6 @@
     z-index: +1;
     left:150px;
     top:150px;
-}
+}*/
 
 /*-------- Footer ---------- */
