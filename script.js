@@ -3,50 +3,72 @@ var gameDetail = {
     round : 0,
     maxRound : 1,
     altMode : false,
-    
+};
+
+var correctVer = [];
+var userVer = [];
+
+// glitch effect on load
+function init() {
+    var glitch = document.getElementById("glitch-title");
+    glitch.setAttribute("class", "start-btn1");
+    setTimeout(resetTitle, 50);
 }
 
-var correctVer = []
-var userVer = []
+// glitch reset
+function resetTitle() {
+    var glitch = document.getElementById("glitch-title");
+    glitch.setAttribute("class", "start-btn");
+}
 
 // gameStart - resets round, maxRound, and runs lights. 
 function gameStart() {
-    gameDetail.round = 0
-    gameDetail.maxRound = 1
-    runLights()
+    gameDetail.round = 0;
+    gameDetail.maxRound = 1;
+    runLights();
 }
 
-// collect random light sequence
+// check array vs round. rnd number or inputCheck
 function runLights() {
-    for (gameDetail.round; gameDetail.round <= gameDetail.maxRound; gameDetail.round++) {
-        while (correctVer.length < gameDetail.round) {
-            var lightFlash = Math.floor(Math.random() *4);
-            correctVer.push(lightFlash);    
-            showLights();
-        }
+    if (correctVer.length <= gameDetail.maxRound) {
+        rndNum();
+    } else {
+        inputCheck();
     }
 }
 
-// Light Function
-function showLights() {
-    for (var i = 0; i < correctVer.length; i++) {
-        
+// rnd number - light pad and delay. 
+function rndNum() {
+    var lightFlash = Math.floor(Math.random() *4);
+        var display = document.getElementById("light" + lightFlash);
+        display.setAttribute("class", "flasher");
+        correctVer.push(lightFlash);   
+        setTimeout(resetPads,500);    
+        runLights();
 }
 
-// player input
-function userInput() {
-    "#light0".onclick()
-    "#light1".onclick()
-    "#light2".onclick()
-    "#light3".onclick()    
+function resetPads() {
+    var pad0 = document.getElementById("light0");
+    pad0.setAttribute("class", "game-box");
+    var pad1 = document.getElementById("light1");
+    pad1.setAttribute("class", "game-box");
+    var pad2 = document.getElementById("light2");
+    pad2.setAttribute("class", "game-box");
+    var pad3 = document.getElementById("light3");
+    pad3.setAttribute("class", "game-box");
 }
+
+function userInput() {
+    
+}
+
 
 //checker player sequence length vs computer sequence
 function inputCheck() {
     if (userVer.length == correctVer.length) {
-        checkLights()
+        checkLights();
     }else{
-        userInput()
+        userInput();
     }
 }
 
@@ -58,19 +80,15 @@ function checkLights() {
         runLights();
     } else {
 // endGame if incorrect
-        endGame()
+        endGame();
+        }
     }
-}
 
 // endGame Function
 function endGame() {
 //    document.getElementById("game-round").innerHTML(gameDetail.maxRound);
 }
 
-
-    
-
-
-
+window.onload = init;
 
 

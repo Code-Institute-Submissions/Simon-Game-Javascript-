@@ -14,6 +14,15 @@
     font-weight: 100;
 }
 
+.start-btn1 {
+    font-family: 'Audiowide', cursive;
+    font-size: 20pt;
+    text-align: center;
+    font-style: italic;
+    font-weight: 100;  
+    color: red;
+}
+
 .start-btn {
     width: 100%;
     font-family: 'Audiowide', cursive;
@@ -23,13 +32,14 @@
 }
 
 /*-------- Section -------- */
+.row {
+    width: 100%;
+}
 
 .game-container {
     position: relative;
     height: 600px;
-    width: 600px;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 100%;
 }
 
 .flex-container {   
@@ -47,25 +57,30 @@
     
 }
 
-.box-yellow {
+#light0 {
     border-color: yellow ;
     border-radius: 40px 0px 40px 0px;
 }
 
-.box-blue {
+#light1 {
     border-color: blue ;
     border-radius: 0px 40px 0px 40px;
 }
-.box-red {
+#light2 {
     border-color: red ;
     border-radius: 0px 40px 0px 40px;
 }
-.box-green {
+#light3 {
     border-color: green ;
     border-radius: 40px 0px 40px 0px;
 }
 
-#lit-square {
+.flasher {
+    width: 150px;
+    height : 150px;
+    margin:25px;
+    border-width: 1px;
+    border-style: solid;
     background-color: black ;
 }
 
