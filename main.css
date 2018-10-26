@@ -49,9 +49,9 @@
 }
 
 .game-box {
-    width: 150px;
+    width: 40%;
     height : 150px;
-    margin:25px;
+    margin:5%;
     border-width: 1px;
     border-style: solid
     
@@ -84,17 +84,8 @@
     background-color: black ;
 }
 
-/*.score-board {
-    position: absolute;
-    background-color:#ccc6ba ;
-    width: 200px;
-    height: 200px;
-    border-radius: 100%;
-    border-width: 2px;
-    border-style: solid;
-    z-index: +1;
-    left:150px;
-    top:150px;
-}*/
+.game-round {
+    text-align: center;
+}
 
 /*-------- Footer ---------- */
