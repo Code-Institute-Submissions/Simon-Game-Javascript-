@@ -1,14 +1,15 @@
-// variables
+// Objects
 var gameDetail = {
     round : 0,
     maxRound : 1,
     altMode : false,
 };
 
+// variables
 var correctVer = [];
 var userVer = [];
 
-// glitch effect on load
+// red glitch effect on load
 function init() {
     var glitch = document.getElementById("glitch-title");
     glitch.setAttribute("class", "start-btn1");
@@ -21,10 +22,10 @@ function resetTitle() {
     glitch.setAttribute("class", "start-btn");
 }
 
-// gameStart - resets round, maxRound, and runs lights. 
+// gameStart - resets round, maxRound, and runs lights. (click function)
 function gameStart() {
     gameDetail.round = 0;
-    gameDetail.maxRound = 1;
+    gameDetail.maxRound = 0;
     runLights();
 }
 
@@ -59,7 +60,7 @@ function resetPads() {
 }
 
 function userInput() {
-    
+    document.getElementById()
 }
 
 
@@ -84,9 +85,10 @@ function checkLights() {
         }
     }
 
-// endGame Function
+// endGame Function - output maxRound as score. 
 function endGame() {
-//    document.getElementById("game-round").innerHTML(gameDetail.maxRound);
+var score  = document.getElementById("game-round");
+score.innerHTML(gameDetail.maxRound);
 }
 
 window.onload = init;
