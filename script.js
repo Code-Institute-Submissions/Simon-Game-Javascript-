@@ -9,11 +9,15 @@ var gameDetail = {
 var correctVer = [];
 var userVer = [];
 
-// red glitch effect on load
+// red glitch effect on load (setup event listeners)
 function init() {
     var glitch = document.getElementById("glitch-title");
     glitch.setAttribute("class", "start-btn1");
     setTimeout(resetTitle, 50);
+    document.getElementById("light0").addEventListener("click", pad0);
+    document.getElementById("light1").addEventListener("click", pad1);
+    document.getElementById("light2").addEventListener("click", pad2);
+    document.getElementById("light3").addEventListener("click", pad3);
 }
 
 // glitch reset
@@ -34,7 +38,7 @@ function runLights() {
     if (correctVer.length <= gameDetail.maxRound) {
         rndNum();
     } else {
-        inputCheck();
+        checkLights();
     }
 }
 
@@ -60,10 +64,33 @@ function resetPads() {
 }
 
 function userInput() {
-    document.getElementById()
 }
 
+//pad entry functions
 
+function pad0() {
+    console.log("you hit pad0");
+    userVer.push(0);
+    runLights();
+}
+
+function pad1() {
+    console.log("you hit pad1");
+    userVer.push(1);
+    runLights();
+}
+
+function pad2() {
+    console.log("you hit pad2");
+    userVer.push(2);
+    runLights();
+}
+
+function pad3() {
+    console.log("you hit pad3");
+    userVer.push(3);
+    runLights();
+}
 //checker player sequence length vs computer sequence
 function inputCheck() {
     if (userVer.length == correctVer.length) {
@@ -87,10 +114,12 @@ function checkLights() {
 
 // endGame Function - output maxRound as score. 
 function endGame() {
-var score  = document.getElementById("game-round");
-score.innerHTML(gameDetail.maxRound);
+//var score  = document.getElementById("game-round");
+//score.innerHTML(gameDetail.maxRound);
 }
 
 window.onload = init;
+
+
 
 
