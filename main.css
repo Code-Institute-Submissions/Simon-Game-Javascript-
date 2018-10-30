@@ -81,6 +81,15 @@
     border-style: solid;
     background-color: black ;
 }
+.flasher-green {
+    width: 40%;
+    height : 150px;
+    margin:5%;
+    border-width: 1px;
+    border-style: solid;
+    background-color: green ;
+}
+
 /*----- Score Board --------- */
 .score-container {
     width: 100%;

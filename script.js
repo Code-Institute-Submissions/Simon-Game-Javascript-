@@ -67,30 +67,42 @@ function userInput() {
 }
 
 //pad entry functions
-
 function pad0() {
     console.log("you hit pad0");
     userVer.push(0);
+    var grnFlash = document.getElementById("light0");
+    grnFlash.setAttribute("class", "flasher-green");
+    setTimeout(resetPads,100);
     runLights();
 }
 
 function pad1() {
     console.log("you hit pad1");
     userVer.push(1);
+    var grnFlash = document.getElementById("light1");
+    grnFlash.setAttribute("class", "flasher-green");
+    setTimeout(resetPads,100);
     runLights();
 }
 
 function pad2() {
     console.log("you hit pad2");
     userVer.push(2);
+    var grnFlash = document.getElementById("light2");
+    grnFlash.setAttribute("class", "flasher-green");
+    setTimeout(resetPads,100);
     runLights();
 }
 
 function pad3() {
     console.log("you hit pad3");
     userVer.push(3);
+    var grnFlash = document.getElementById("light3");
+    grnFlash.setAttribute("class", "flasher-green");
+    setTimeout(resetPads,100);
     runLights();
 }
+
 //checker player sequence length vs computer sequence
 function inputCheck() {
     if (userVer.length == correctVer.length) {
