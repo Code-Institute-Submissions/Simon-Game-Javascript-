@@ -5,11 +5,11 @@ var gameDetail = {
     altMode : false,
 };
 
-// variables
+// Global Arrays
 var correctVer = [];
 var userVer = [];
 
-// red glitch effect on load (setup event listeners)
+// red glitch effect on load (also setup event listeners)
 function init() {
     var glitch = document.getElementById("glitch-title");
     glitch.setAttribute("class", "start-btn1");
@@ -34,24 +34,44 @@ function gameStart() {
 }
 
 // check array vs round. rnd number or inputCheck
-function runLights() {
-    if (correctVer.length <= gameDetail.maxRound) {
-        rndNum();
-    } else {
+//function runLights() {
+//    if (correctVer.length <= gameDetail.maxRound) {
+//        rndNum();
+//    } else {
+//        checkLights();
+//    }
+//}
+
+// rnd number - light pad and delay. 
+//function rndNum() {
+//    var lightFlash = Math.floor(Math.random() *4);
+//        var display = document.getElementById("light" + lightFlash);
+//        display.setAttribute("class", "flasher");
+//        correctVer.push(lightFlash);   
+//        setTimeout(resetPads,500);    
+//        runLights();
+//}
+function runLights(x) {
+    if (correctVer.length >= gameDetail.maxRound) {
+        resetPads();
         checkLights();
+        return;
+    
+    } else {
+    
+        var lightFlash = Math.floor(Math.random() *4);
+        var display = document.getElementById("light" + lightFlash);
+        resetPads();
+        display.setAttribute("class", "flasher");
+        correctVer.push(lightFlash);   
+        setTimeout(function() {
+        runLights(x+1);
+        }, 500);
     }
 }
 
-// rnd number - light pad and delay. 
-function rndNum() {
-    var lightFlash = Math.floor(Math.random() *4);
-        var display = document.getElementById("light" + lightFlash);
-        display.setAttribute("class", "flasher");
-        correctVer.push(lightFlash);   
-        setTimeout(resetPads,500);    
-        runLights();
-}
 
+// reset pad lights
 function resetPads() {
     var pad0 = document.getElementById("light0");
     pad0.setAttribute("class", "game-box");
@@ -73,7 +93,7 @@ function pad0() {
     var grnFlash = document.getElementById("light0");
     grnFlash.setAttribute("class", "flasher-green");
     setTimeout(resetPads,100);
-    runLights();
+    inputCheck();
 }
 
 function pad1() {
@@ -82,7 +102,7 @@ function pad1() {
     var grnFlash = document.getElementById("light1");
     grnFlash.setAttribute("class", "flasher-green");
     setTimeout(resetPads,100);
-    runLights();
+    inputCheck();
 }
 
 function pad2() {
@@ -91,7 +111,7 @@ function pad2() {
     var grnFlash = document.getElementById("light2");
     grnFlash.setAttribute("class", "flasher-green");
     setTimeout(resetPads,100);
-    runLights();
+    inputCheck();
 }
 
 function pad3() {
@@ -100,7 +120,7 @@ function pad3() {
     var grnFlash = document.getElementById("light3");
     grnFlash.setAttribute("class", "flasher-green");
     setTimeout(resetPads,100);
-    runLights();
+    inputCheck();
 }
 
 //checker player sequence length vs computer sequence
@@ -108,7 +128,7 @@ function inputCheck() {
     if (userVer.length == correctVer.length) {
         checkLights();
     }else{
-        userInput();
+        runLights();
     }
 }
 
