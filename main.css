@@ -94,7 +94,7 @@
 .score-container {
     width: 100%;
 }
-.game-round {
+#game-round {
     width:100%;
     text-align: center;
 }

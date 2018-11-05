@@ -51,6 +51,8 @@ function gameStart() {
 //        setTimeout(resetPads,500);    
 //        runLights();
 //}
+
+// recursive function. 
 function runLights(x) {
     if (correctVer.length >= gameDetail.maxRound) {
         resetPads();
@@ -67,6 +69,7 @@ function runLights(x) {
         setTimeout(function() {
         runLights(x+1);
         }, 500);
+        
     }
 }
 
@@ -128,7 +131,7 @@ function inputCheck() {
     if (userVer.length == correctVer.length) {
         checkLights();
     }else{
-        runLights();
+        return;
     }
 }
 
@@ -146,8 +149,8 @@ function checkLights() {
 
 // endGame Function - output maxRound as score. 
 function endGame() {
-//var score  = document.getElementById("game-round");
-//score.innerHTML(gameDetail.maxRound);
+var score  = document.getElementById("game-round");
+score.innerHTML(gameDetail.maxRound);
 }
 
 window.onload = init;
