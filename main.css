@@ -31,7 +31,29 @@
     font-weight: 100;    
 }
 
-/*-------- Section -------- */
+/*-------- Section --------*/
+/*-------- Game wrapper -------*/ 
+#wrapper {
+    text-align: center;
+}
+
+#b-ground {
+    margin: 0 auto;
+    max-width: 750px;
+}
+
+.b-green {
+    background-color: green;
+}
+
+.b-red {
+    background-color: red;
+}
+
+.blank {
+    background-color: white;
+}
+/*----- Pad section --------*/ 
 .row {
     width: 100%;
 }

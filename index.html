@@ -12,21 +12,24 @@
 <body>
     <header>
         <p class="game-title">S1M0N</p>
-        <h4 onclick="gameStart()" class="start-btn" id="glitch-title"> Cl1CK T0 ST4RT</h4>
     </header>
     <section>
-            <div class="row pad-container">
-                <div class="game-box" id="light0"></div>
-                <div class="game-box" id="light1"></div>
+        <div id="wrapper">
+            <div id="b-ground">
+                <div class="row pad-container">
+                    <div class="game-box" id="light0"></div>
+                    <div class="game-box" id="light1"></div>
+                </div>
+                <div class="row score-container">
+                    <h4 onclick="gameStart()" class="start-btn" id="glitch-title"> Cl1CK T0 ST4RT</h4>
+                    <h2 id="game-round">0</h2>
+                </div>
+                <div class="row pad-container">
+                    <div class="game-box" id="light2"></div>
+                    <div class="game-box" id="light3"></div>
+                </div>
             </div>
-            <div class="row score-container">
-                <h2 id="game-round">0</h2>
-            </div>
-            <div class="row pad-container">
-                <div class="game-box" id="light2"></div>
-                <div class="game-box" id="light3"></div>
-            </div>
-        
+        </div>
     </section>
     <footer></footer>
 </body>

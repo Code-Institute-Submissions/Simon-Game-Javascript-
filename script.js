@@ -2,6 +2,7 @@
 var gameDetail = {
     round : 0,
     maxRound : 1,
+    regButton : false,
     altMode : false,
 };
 
@@ -33,6 +34,11 @@ function gameStart() {
     runLights();
 }
 
+// enable button presses
+function allowPress() {
+    gameDetail.regButton = true;
+}
+
 // check array vs round. rnd number or inputCheck
 //function runLights() {
 //    if (correctVer.length <= gameDetail.maxRound) {
@@ -55,6 +61,7 @@ function gameStart() {
 // recursive function. 
 function runLights(x) {
     if (correctVer.length >= gameDetail.maxRound) {
+        allowPress();
         resetPads();
         checkLights();
         return;
@@ -91,39 +98,47 @@ function userInput() {
 
 //pad entry functions
 function pad0() {
-    console.log("you hit pad0");
-    userVer.push(0);
-    var grnFlash = document.getElementById("light0");
-    grnFlash.setAttribute("class", "flasher-green");
-    setTimeout(resetPads,100);
-    inputCheck();
+    if (gameDetail.regButton == true) {
+        console.log("you hit pad0");
+        userVer.push(0);
+        var grnFlash = document.getElementById("light0");
+        grnFlash.setAttribute("class", "flasher-green");
+        setTimeout(resetPads,100);
+        inputCheck();
+    }
 }
 
 function pad1() {
-    console.log("you hit pad1");
-    userVer.push(1);
-    var grnFlash = document.getElementById("light1");
-    grnFlash.setAttribute("class", "flasher-green");
-    setTimeout(resetPads,100);
-    inputCheck();
+    if (gameDetail.regButton == true) {
+        console.log("you hit pad1");
+        userVer.push(1);
+        var grnFlash = document.getElementById("light1");
+        grnFlash.setAttribute("class", "flasher-green");
+        setTimeout(resetPads,100);
+        inputCheck();
+    }
 }
 
 function pad2() {
-    console.log("you hit pad2");
-    userVer.push(2);
-    var grnFlash = document.getElementById("light2");
-    grnFlash.setAttribute("class", "flasher-green");
-    setTimeout(resetPads,100);
-    inputCheck();
+    if (gameDetail.regButton == true) {
+        console.log("you hit pad2");
+        userVer.push(2);
+        var grnFlash = document.getElementById("light2");
+        grnFlash.setAttribute("class", "flasher-green");
+        setTimeout(resetPads,100);
+        inputCheck();
+    }
 }
 
 function pad3() {
-    console.log("you hit pad3");
-    userVer.push(3);
-    var grnFlash = document.getElementById("light3");
-    grnFlash.setAttribute("class", "flasher-green");
-    setTimeout(resetPads,100);
-    inputCheck();
+    if (gameDetail.regButton == true) {
+        console.log("you hit pad3");
+        userVer.push(3);
+        var grnFlash = document.getElementById("light3");
+        grnFlash.setAttribute("class", "flasher-green");
+        setTimeout(resetPads,100);
+        inputCheck();
+    }
 }
 
 //checker player sequence length vs computer sequence
@@ -139,18 +154,38 @@ function inputCheck() {
 function checkLights() {
     if (JSON.stringify(correctVer) === JSON.stringify(userVer)){
 // Add to maxRound and runLights again
+        correctFlash();
         gameDetail.maxRound++;
         runLights();
     } else {
 // endGame if incorrect
+        incorrectFlash();
         endGame();
         }
     }
+    
+// green flash background for correct button press
+function correctFlash() {
+    var flash = document.getElementById("b-ground");
+    flash.setAttribute("class", "b-green");
+    setTimeout(resetBack(), 100);
+}
+// red flash background for erroneous presses
+function incorrectFlash() {
+    var flash = document.getElementById("b-ground");
+    flash.setAttribute("class", "b-red");
+    setTimeout(resetBack(), 100);
+}
+// reset background colour
+function resetBack() {
+    var flash = document.getElementById("b-ground");
+    flash.setAttribute("class", "blank");
+}
 
 // endGame Function - output maxRound as score. 
 function endGame() {
-var score  = document.getElementById("game-round");
-score.innerHTML(gameDetail.maxRound);
+    var score  = document.getElementById("game-round");
+    score.innerHTML(gameDetail.maxRound);
 }
 
 window.onload = init;
