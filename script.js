@@ -60,10 +60,10 @@ function allowPress() {
 
 // recursive function. 
 function runLights(x) {
-    if (correctVer.length >= gameDetail.maxRound) {
+    if (correctVer.length >= (gameDetail.maxRound+1)) {
         allowPress();
         resetPads();
-        checkLights();
+        inputCheck();
         return;
     
     } else {
@@ -145,8 +145,6 @@ function pad3() {
 function inputCheck() {
     if (userVer.length == correctVer.length) {
         checkLights();
-    }else{
-        return;
     }
 }
 
@@ -161,7 +159,7 @@ function checkLights() {
 // endGame if incorrect
         incorrectFlash();
         endGame();
-        }
+       }
     }
     
 // green flash background for correct button press
@@ -184,8 +182,9 @@ function resetBack() {
 
 // endGame Function - output maxRound as score. 
 function endGame() {
+    var scoreBoard = gameDetail.maxRound
     var score  = document.getElementById("game-round");
-    score.innerHTML(gameDetail.maxRound);
+    score.innerHTML(scoreBoard);
 }
 
 window.onload = init;
