@@ -190,7 +190,7 @@ function resetBack() {
 // endGame Function - output maxRound as score. 
 function endGame() {
     var score  = document.getElementById("game-round");
-    score.innerHTML(gameDetail.maxRound + 1);
+    score.innerHTML = (gameDetail.maxRound + 1);
 }
 
 window.onload = init;
