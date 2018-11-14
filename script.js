@@ -6,9 +6,15 @@ var gameDetail = {
     altMode : false,
 };
 
-// Global Arrays
-var correctVer = [];
-var userVer = [];
+var player = {
+    turn : 0,
+    array : [],
+};
+
+var simon = {
+    turn : 0,
+    array : [],
+};
 
 // red glitch effect on load (also setup event listeners)
 function init() {
@@ -41,7 +47,7 @@ function allowPress() {
 
 // check array vs round. rnd number or inputCheck
 //function runLights() {
-//    if (correctVer.length <= gameDetail.maxRound) {
+//    if (simon.array.length <= gameDetail.maxRound) {
 //        rndNum();
 //    } else {
 //        checkLights();
@@ -53,14 +59,14 @@ function allowPress() {
 //    var lightFlash = Math.floor(Math.random() *4);
 //        var display = document.getElementById("light" + lightFlash);
 //        display.setAttribute("class", "flasher");
-//        correctVer.push(lightFlash);   
+//        simon.array.push(lightFlash);   
 //        setTimeout(resetPads,500);    
 //        runLights();
 //}
 
 // recursive function. 
 function runLights(x) {
-    if (correctVer.length >= (gameDetail.maxRound+1)) {
+    if (simon.array.length >= (gameDetail.maxRound+1)) {
         allowPress();
         resetPads();
         inputCheck();
@@ -72,7 +78,7 @@ function runLights(x) {
         var display = document.getElementById("light" + lightFlash);
         resetPads();
         display.setAttribute("class", "flasher");
-        correctVer.push(lightFlash);   
+        simon.array.push(lightFlash);   
         setTimeout(function() {
         runLights(x+1);
         }, 500);
@@ -100,7 +106,7 @@ function userInput() {
 function pad0() {
     if (gameDetail.regButton == true) {
         console.log("you hit pad0");
-        userVer.push(0);
+        player.array.push(0);
         var grnFlash = document.getElementById("light0");
         grnFlash.setAttribute("class", "flasher-green");
         setTimeout(resetPads,100);
@@ -111,7 +117,7 @@ function pad0() {
 function pad1() {
     if (gameDetail.regButton == true) {
         console.log("you hit pad1");
-        userVer.push(1);
+        player.array.push(1);
         var grnFlash = document.getElementById("light1");
         grnFlash.setAttribute("class", "flasher-green");
         setTimeout(resetPads,100);
@@ -122,7 +128,7 @@ function pad1() {
 function pad2() {
     if (gameDetail.regButton == true) {
         console.log("you hit pad2");
-        userVer.push(2);
+        player.array.push(2);
         var grnFlash = document.getElementById("light2");
         grnFlash.setAttribute("class", "flasher-green");
         setTimeout(resetPads,100);
@@ -133,7 +139,7 @@ function pad2() {
 function pad3() {
     if (gameDetail.regButton == true) {
         console.log("you hit pad3");
-        userVer.push(3);
+        player.array.push(3);
         var grnFlash = document.getElementById("light3");
         grnFlash.setAttribute("class", "flasher-green");
         setTimeout(resetPads,100);
@@ -143,22 +149,24 @@ function pad3() {
 
 //checker player sequence length vs computer sequence
 function inputCheck() {
-    if (userVer.length == correctVer.length) {
+    if (player.array.length == simon.array.length) {
         checkLights();
     }
 }
 
 // Check for accuracy
 function checkLights() {
-    if (JSON.stringify(correctVer) === JSON.stringify(userVer)){
+    if (simon.array[0] == player.array[0]) {
+        console.log("win");
 // Add to maxRound and runLights again
-        correctFlash();
-        gameDetail.maxRound++;
-        runLights();
+//        correctFlash();
+//        gameDetail.maxRound++;
+//        runLights();
     } else {
+        console.log("lose");
 // endGame if incorrect
-        incorrectFlash();
-        endGame();
+//        incorrectFlash();
+//        endGame();
        }
     }
     
