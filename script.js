@@ -1,7 +1,7 @@
 // Objects
 var gameDetail = {
     round : 0,
-    maxRound : 1,
+    maxRound : 0,
     regButton : false,
     altMode : false,
 };
@@ -60,7 +60,7 @@ function allowPress() {
 //        var display = document.getElementById("light" + lightFlash);
 //        display.setAttribute("class", "flasher");
 //        simon.array.push(lightFlash);   
-//        setTimeout(resetPads,500);    
+//        setInterval(resetPads,500);    
 //        runLights();
 //}
 
@@ -82,7 +82,6 @@ function runLights(x) {
         setTimeout(function() {
         runLights(x+1);
         }, 500);
-        
     }
 }
 
@@ -108,7 +107,7 @@ function pad0() {
         console.log("you hit pad0");
         player.array.push(0);
         var grnFlash = document.getElementById("light0");
-        grnFlash.setAttribute("class", "flasher-green");
+        grnFlash.setAttribute("class", "flasher-yellow");
         setTimeout(resetPads,100);
         inputCheck();
     }
@@ -119,7 +118,7 @@ function pad1() {
         console.log("you hit pad1");
         player.array.push(1);
         var grnFlash = document.getElementById("light1");
-        grnFlash.setAttribute("class", "flasher-green");
+        grnFlash.setAttribute("class", "flasher-blue");
         setTimeout(resetPads,100);
         inputCheck();
     }
@@ -130,7 +129,7 @@ function pad2() {
         console.log("you hit pad2");
         player.array.push(2);
         var grnFlash = document.getElementById("light2");
-        grnFlash.setAttribute("class", "flasher-green");
+        grnFlash.setAttribute("class", "flasher-red");
         setTimeout(resetPads,100);
         inputCheck();
     }
@@ -159,14 +158,14 @@ function checkLights() {
     if (simon.array[0] == player.array[0]) {
         console.log("win");
 // Add to maxRound and runLights again
-//        correctFlash();
-//        gameDetail.maxRound++;
+        correctFlash();
+        gameDetail.maxRound++;
 //        runLights();
     } else {
         console.log("lose");
 // endGame if incorrect
-//        incorrectFlash();
-//        endGame();
+        incorrectFlash();
+        endGame();
        }
     }
     
@@ -174,13 +173,13 @@ function checkLights() {
 function correctFlash() {
     var flash = document.getElementById("b-ground");
     flash.setAttribute("class", "b-green");
-    setTimeout(resetBack(), 100);
+    setTimeout(resetBack, 100);
 }
 // red flash background for erroneous presses
 function incorrectFlash() {
     var flash = document.getElementById("b-ground");
     flash.setAttribute("class", "b-red");
-    setTimeout(resetBack(), 100);
+    setTimeout(resetBack, 100);
 }
 // reset background colour
 function resetBack() {
@@ -190,9 +189,8 @@ function resetBack() {
 
 // endGame Function - output maxRound as score. 
 function endGame() {
-    var scoreBoard = gameDetail.maxRound
     var score  = document.getElementById("game-round");
-    score.innerHTML(scoreBoard);
+    score.innerHTML(gameDetail.maxRound + 1);
 }
 
 window.onload = init;

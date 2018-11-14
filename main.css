@@ -102,6 +102,31 @@
     border-style: solid;
     background-color: black ;
 }
+.flasher-yellow {
+    width: 40%;
+    height : 150px;
+    margin:5%;
+    border-width: 1px;
+    border-style: solid;
+    background-color: yellow ;
+}
+
+.flasher-blue {
+    width: 40%;
+    height : 150px;
+    margin:5%;
+    border-width: 1px;
+    border-style: solid;
+    background-color: blue ;
+}
+.flasher-red {
+    width: 40%;
+    height : 150px;
+    margin:5%;
+    border-width: 1px;
+    border-style: solid;
+    background-color: red ;
+}
 .flasher-green {
     width: 40%;
     height : 150px;
@@ -110,7 +135,6 @@
     border-style: solid;
     background-color: green ;
 }
-
 /*----- Score Board --------- */
 .score-container {
     max-width: 100%;
