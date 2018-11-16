@@ -36,9 +36,14 @@
     text-align: center;
 }
 /*-------- b-ground and colours ----*/
+#wrapper {
+    border-radius: 40px;
+}
+
 #b-ground {
     margin: 0 auto;
     max-width: 750px;
+    border-radius: 40px;
 }
 
 .b-green {

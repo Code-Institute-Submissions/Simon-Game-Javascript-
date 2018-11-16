@@ -16,16 +16,7 @@ var simon = {
     array : [],
 };
 
-// red glitch effect on load (also setup event listeners)
-function init() {
-    var glitch = document.getElementById("glitch-title");
-    glitch.setAttribute("class", "start-btn1");
-    setTimeout(resetTitle, 50);
-    document.getElementById("light0").addEventListener("click", pad0);
-    document.getElementById("light1").addEventListener("click", pad1);
-    document.getElementById("light2").addEventListener("click", pad2);
-    document.getElementById("light3").addEventListener("click", pad3);
-}
+// red glitch effect on load (also setup event listeners on load)
 
 // glitch reset
 function resetTitle() {
@@ -193,8 +184,21 @@ function endGame() {
     score.innerHTML = (gameDetail.maxRound + 1);
 }
 
-window.onload = init;
+// red glitch effect on load (also setup event listeners on load)
+window.onload = function() {
+    var glitch = document.getElementById("glitch-title");
+    glitch.setAttribute("class", "start-btn1");
+    setTimeout(resetTitle, 50);
+    document.getElementById("light0").addEventListener("click", pad0);
+    document.getElementById("light1").addEventListener("click", pad1);
+    document.getElementById("light2").addEventListener("click", pad2);
+    document.getElementById("light3").addEventListener("click", pad3);
+};
 
-
+// glitch reset
+function resetTitle() {
+    var glitch = document.getElementById("glitch-title");
+    glitch.setAttribute("class", "start-btn");
+}
 
 
