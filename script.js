@@ -28,7 +28,23 @@ function resetTitle() {
 function gameStart() {
     gameDetail.round = 0;
     gameDetail.maxRound = 0;
+    wait();
     runLights();
+}
+// game board readout functions. 
+function wait() {
+    var wait = document.getElementById("glitch-title");
+    wait.innerHTML = ("WA1T");
+}
+
+function play() {
+    var play = document.getElementById("glitch-title");
+    play.innerHTML = ("PL4Y");    
+}
+
+function gameOver() {
+    var over = document.getElementById("glitch-title");
+    over.innerHTML = ("G4ME 0VER");
 }
 
 // enable button presses
@@ -165,6 +181,7 @@ function correctFlash() {
     var flash = document.getElementById("b-ground");
     flash.setAttribute("class", "b-green");
     setTimeout(resetBack, 100);
+    
 }
 // red flash background for erroneous presses
 function incorrectFlash() {
