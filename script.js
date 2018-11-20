@@ -27,7 +27,7 @@ function resetTitle() {
 // gameStart - resets round, maxRound, and runs lights. (click function)
 function gameStart() {
     gameDetail.round = 0;
-    gameDetail.maxRound = 0;
+    gameDetail.maxRound = 10;
     wait();
     runLights();
 }
@@ -37,59 +37,98 @@ function wait() {
     wait.innerHTML = ("WA1T");
 }
 
+function blink() {
+    var blink = document.getElementById("glitch-title");
+    blink.innerHTML = ("----");
+}
+
 function play() {
     var play = document.getElementById("glitch-title");
     play.innerHTML = ("PL4Y");    
+}
+
+function correctText() {
+    var correct = document.getElementById("glitch-title");
+    correct.innerHTML = ("C0RRECT");    
 }
 
 function gameOver() {
     var over = document.getElementById("glitch-title");
     over.innerHTML = ("G4ME 0VER");
 }
-
 // enable button presses
 function allowPress() {
     gameDetail.regButton = true;
 }
 
 // check array vs round. rnd number or inputCheck
-//function runLights() {
-//    if (simon.array.length <= gameDetail.maxRound) {
-//        rndNum();
+function runLights() {
+    if (simon.array.length <= gameDetail.maxRound) {
+        rndNum();
+    } else {
+        checkLights();
+    }
+}
+
+// rnd number - light pad and delay - rewritten using set/clear interval.  
+function rndNum() {
+    var i = 0;
+    var simonFlash = setInterval(function(){
+        resetPads();
+        var lightFlash = Math.floor(Math.random() *4);
+        var display = document.getElementById("light" + lightFlash);
+        display.setAttribute("class", "flasher");
+        simon.array.push(lightFlash);  
+        i++;
+            if (i >= gameDetail.maxRound + 1){
+            clearInterval(simonFlash);
+        }
+    },500);
+}
+
+        
+        
+//        runLights();
+
+
+// recursive function. 
+//function runLights(x) {
+ //   if (simon.array.length >= (gameDetail.maxRound+1)) {
+//       allowPress();
+//        resetPads();
+//        inputCheck();
+//        return;
+//    
 //    } else {
-//        checkLights();
+//    
+//        var lightFlash = Math.floor(Math.random() *4);
+//        var display = document.getElementById("light" + lightFlash);
+//        resetPads();
+//        setTimeout(function() {
+//            blink();    
+//        }, 250);
+//        display.setAttribute("class", "flasher");
+//        simon.array.push(lightFlash);   
+//        setTimeout(function() {
+//            runLights(x+1);
+//        }, 500);
+//        setTimeout(function() {
+//            blink();    
+//        }, 250);
 //    }
 //}
 
-// rnd number - light pad and delay. 
+// random number and push to array
 //function rndNum() {
 //    var lightFlash = Math.floor(Math.random() *4);
-//        var display = document.getElementById("light" + lightFlash);
-//        display.setAttribute("class", "flasher");
-//        simon.array.push(lightFlash);   
-//        setInterval(resetPads,500);    
-//        runLights();
+//    simon.array.push(lightFlash);
 //}
 
-// recursive function. 
-function runLights(x) {
-    if (simon.array.length >= (gameDetail.maxRound+1)) {
-        allowPress();
-        resetPads();
-        inputCheck();
-        return;
+
+
+function stopFunction() {
+    clearInterval(runLights);
     
-    } else {
-    
-        var lightFlash = Math.floor(Math.random() *4);
-        var display = document.getElementById("light" + lightFlash);
-        resetPads();
-        display.setAttribute("class", "flasher");
-        simon.array.push(lightFlash);   
-        setTimeout(function() {
-        runLights(x+1);
-        }, 500);
-    }
 }
 
 
@@ -162,16 +201,17 @@ function inputCheck() {
 
 // Check for accuracy
 function checkLights() {
-    if (simon.array[0] == player.array[0]) {
+    if (simon.array[simon.turn] == player.array[player.turn]) {
         console.log("win");
 // Add to maxRound and runLights again
         correctFlash();
-        gameDetail.maxRound++;
+        winRound();
 //        runLights();
     } else {
         console.log("lose");
 // endGame if incorrect
         incorrectFlash();
+        gameOver();
         endGame();
        }
     }
@@ -180,6 +220,7 @@ function checkLights() {
 function correctFlash() {
     var flash = document.getElementById("b-ground");
     flash.setAttribute("class", "b-green");
+    correctText();
     setTimeout(resetBack, 100);
     
 }
@@ -198,7 +239,7 @@ function resetBack() {
 // endGame Function - output maxRound as score. 
 function endGame() {
     var score  = document.getElementById("game-round");
-    score.innerHTML = (gameDetail.maxRound + 1);
+    score.innerHTML = ("M4X R0UND " + gameDetail.maxRound + 1);
 }
 
 // red glitch effect on load (also setup event listeners on load)
@@ -218,4 +259,9 @@ function resetTitle() {
     glitch.setAttribute("class", "start-btn");
 }
 
+// winRound - add to turn and run lights
+function winRound() {
+    
+    
+}
 

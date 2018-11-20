@@ -157,6 +157,13 @@
 
 #game-round {
     width:100%;
+    font-family: 'Audiowide', cursive;
+    font-size: 20pt;
+    text-align: center;
+    font-weight: 100;
+    
 }
+
+
 
 /*-------- Footer ---------- */
