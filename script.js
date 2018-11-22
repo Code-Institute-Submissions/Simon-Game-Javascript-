@@ -16,18 +16,10 @@ var simon = {
     array : [],
 };
 
-// red glitch effect on load (also setup event listeners on load)
-
-// glitch reset
-function resetTitle() {
-    var glitch = document.getElementById("glitch-title");
-    glitch.setAttribute("class", "start-btn");
-}
-
 // gameStart - resets round, maxRound, and runs lights. (click function)
 function gameStart() {
     gameDetail.round = 0;
-    gameDetail.maxRound = 10;
+    gameDetail.maxRound = 0;
     wait();
     runLights();
 }
@@ -59,6 +51,7 @@ function gameOver() {
 // enable button presses
 function allowPress() {
     gameDetail.regButton = true;
+    play();
 }
 
 // check array vs round. rnd number or inputCheck
@@ -82,55 +75,11 @@ function rndNum() {
         i++;
             if (i >= gameDetail.maxRound + 1){
             clearInterval(simonFlash);
+            allowPress();
+            
         }
     },500);
 }
-
-        
-        
-//        runLights();
-
-
-// recursive function. 
-//function runLights(x) {
- //   if (simon.array.length >= (gameDetail.maxRound+1)) {
-//       allowPress();
-//        resetPads();
-//        inputCheck();
-//        return;
-//    
-//    } else {
-//    
-//        var lightFlash = Math.floor(Math.random() *4);
-//        var display = document.getElementById("light" + lightFlash);
-//        resetPads();
-//        setTimeout(function() {
-//            blink();    
-//        }, 250);
-//        display.setAttribute("class", "flasher");
-//        simon.array.push(lightFlash);   
-//        setTimeout(function() {
-//            runLights(x+1);
-//        }, 500);
-//        setTimeout(function() {
-//            blink();    
-//        }, 250);
-//    }
-//}
-
-// random number and push to array
-//function rndNum() {
-//    var lightFlash = Math.floor(Math.random() *4);
-//    simon.array.push(lightFlash);
-//}
-
-
-
-function stopFunction() {
-    clearInterval(runLights);
-    
-}
-
 
 // reset pad lights
 function resetPads() {
@@ -261,7 +210,9 @@ function resetTitle() {
 
 // winRound - add to turn and run lights
 function winRound() {
-    
-    
+    player.turn++;
+    simon.turn++;
+    gameDetail.maxRound++;
+    runLights();
 }
 
