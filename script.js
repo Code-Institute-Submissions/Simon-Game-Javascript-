@@ -19,7 +19,7 @@ var simon = {
 // gameStart - resets round, maxRound, and runs lights. (click function)
 function gameStart() {
     gameDetail.round = 0;
-    gameDetail.maxRound = 0;
+    gameDetail.maxRound = 2;
     wait();
     runLights();
 }
@@ -76,7 +76,6 @@ function rndNum() {
             if (i >= gameDetail.maxRound + 1){
             clearInterval(simonFlash);
             allowPress();
-            
         }
     },500);
 }
@@ -154,8 +153,8 @@ function checkLights() {
         console.log("win");
 // Add to maxRound and runLights again
         correctFlash();
-        winRound();
-//        runLights();
+        winLight();
+
     } else {
         console.log("lose");
 // endGame if incorrect
@@ -183,6 +182,24 @@ function incorrectFlash() {
 function resetBack() {
     var flash = document.getElementById("b-ground");
     flash.setAttribute("class", "blank");
+}
+
+function winLight() {
+    if (player.array.length >= simon.array.length){
+        checkArray();
+    } else {
+        player.turn +1;
+        simon.turn + 1;
+    }
+}
+
+function checkArray() {
+    if (JSON.stringify(player.array) === JSON.stringify(simon.array)){
+        console.log("winnah!"); 
+    } else {
+        incorrectFlash();
+        endGame();
+    }
 }
 
 // endGame Function - output maxRound as score. 
