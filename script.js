@@ -19,7 +19,7 @@ var simon = {
 // gameStart - resets round, maxRound, and runs lights. (click function)
 function gameStart() {
     gameDetail.round = 0;
-    gameDetail.maxRound = 2;
+    gameDetail.maxRound = 0;
     wait();
     runLights();
 }
@@ -65,15 +65,15 @@ function runLights() {
 
 // rnd number - light pad and delay - rewritten using set/clear interval.  
 function rndNum() {
-    var i = 0;
     var simonFlash = setInterval(function(){
         resetPads();
         var lightFlash = Math.floor(Math.random() *4);
         var display = document.getElementById("light" + lightFlash);
         display.setAttribute("class", "flasher");
         simon.array.push(lightFlash);  
-        i++;
-            if (i >= gameDetail.maxRound + 1){
+        simon.turn++;
+        player.turn++;
+            if (player.turn >= gameDetail.maxRound + 1){
             clearInterval(simonFlash);
             allowPress();
         }
@@ -196,6 +196,8 @@ function winLight() {
 function checkArray() {
     if (JSON.stringify(player.array) === JSON.stringify(simon.array)){
         console.log("winnah!"); 
+        gameDetail.maxRound++;
+        runLights();
     } else {
         incorrectFlash();
         endGame();
@@ -205,7 +207,7 @@ function checkArray() {
 // endGame Function - output maxRound as score. 
 function endGame() {
     var score  = document.getElementById("game-round");
-    score.innerHTML = ("M4X R0UND " + gameDetail.maxRound + 1);
+    score.innerHTML = ("M4X R0UND " + gameDetail.maxRound);
 }
 
 // red glitch effect on load (also setup event listeners on load)
