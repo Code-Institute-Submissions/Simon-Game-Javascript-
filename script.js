@@ -7,14 +7,16 @@ var gameDetail = {
 };
 
 var player = {
-    turn : 0,
+    currentNum : 0,
     array : [],
 };
 
 var simon = {
-    turn : 0,
+    currentNum : 0,
     array : [],
 };
+
+var playerTurn = 0;
 
 // gameStart - resets round, maxRound, and runs lights. (click function)
 function gameStart() {
@@ -59,25 +61,53 @@ function runLights() {
     if (simon.array.length <= gameDetail.maxRound) {
         rndNum();
     } else {
-        checkLights();
+        show(playerTurn);
     }
 }
 
 // rnd number - light pad and delay - rewritten using set/clear interval.  
+//function rndNum() {
+//    var simonFlash = setInterval(function(){
+//        resetPads();
+//        currentNum = Math.floor(Math.random() *4);
+//        var display = document.getElementById("light" + lightFlash);
+//        display.setAttribute("class", "flasher");
+//        simon.array.push(lightFlash);  
+//        simon.turn++;
+//        player.turn++;
+//            if (simon.array.length == gameDetail.maxRound + 1){
+//            clearInterval(simonFlash);
+//            allowPress();
+//        }
+//    },500);
+//}
+
 function rndNum() {
-    var simonFlash = setInterval(function(){
-        resetPads();
-        var lightFlash = Math.floor(Math.random() *4);
-        var display = document.getElementById("light" + lightFlash);
-        display.setAttribute("class", "flasher");
-        simon.array.push(lightFlash);  
-        simon.turn++;
-        player.turn++;
-            if (player.turn >= gameDetail.maxRound + 1){
-            clearInterval(simonFlash);
-            allowPress();
-        }
-    },500);
+    simon.currentNum = Math.floor(Math.random() *4);
+    simon.turn++;
+    simon.array.push(simon.currentNum);
+    runLights()
+}
+
+//function showLights() {
+//    if (player.turn == simon.array.length) {
+//        clearInterval(simonFlash);
+//        allowPress();
+        
+//    } else {
+//        setTimeout(resetPad(), 500);
+//        var simonFlash = setInterval(function(){
+//        var display = document.getElementById("light" + simon.array[player.turn]);
+//        display.setAttribute("class", "flasher");
+//        setTimeout(resetPads(), 500);
+//        player.turn+1;},1000);
+//    } 
+//}
+
+function show(playerTurn){ 
+    var display = document.getElementById("light" + simon.array[playerTurn]);
+    display.setAttribute("class", "flasher");
+    setTimeout(resetPads(),500);
 }
 
 // reset pad lights
