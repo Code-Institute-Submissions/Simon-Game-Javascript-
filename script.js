@@ -21,7 +21,7 @@ var playerTurn = 0;
 // gameStart - resets round, maxRound, and runs lights. (click function)
 function gameStart() {
     gameDetail.round = 0;
-    gameDetail.maxRound = 0;
+    gameDetail.maxRound = 1;
     wait();
     runLights();
 }
@@ -61,32 +61,18 @@ function runLights() {
     if (simon.array.length <= gameDetail.maxRound) {
         rndNum();
     } else {
-        show(playerTurn);
+        showLights();
     }
 }
 
-// rnd number - light pad and delay - rewritten using set/clear interval.  
-//function rndNum() {
-//    var simonFlash = setInterval(function(){
-//        resetPads();
-//        currentNum = Math.floor(Math.random() *4);
-//        var display = document.getElementById("light" + lightFlash);
-//        display.setAttribute("class", "flasher");
-//        simon.array.push(lightFlash);  
-//        simon.turn++;
-//        player.turn++;
-//            if (simon.array.length == gameDetail.maxRound + 1){
-//            clearInterval(simonFlash);
-//            allowPress();
-//        }
-//    },500);
-//}
+// recursive function to iterate through sion.array and pass each entry as an argument to show.
+// playerTurn can be used to track and or anonymised x argument. 
 
 function rndNum() {
     simon.currentNum = Math.floor(Math.random() *4);
     simon.turn++;
     simon.array.push(simon.currentNum);
-    runLights()
+    runLights();
 }
 
 //function showLights() {
@@ -107,7 +93,7 @@ function rndNum() {
 function show(playerTurn){ 
     var display = document.getElementById("light" + simon.array[playerTurn]);
     display.setAttribute("class", "flasher");
-    setTimeout(resetPads(),500);
+    setTimeout(resetPads,500);
 }
 
 // reset pad lights
