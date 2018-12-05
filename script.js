@@ -21,7 +21,7 @@ var playerTurn = 0;
 // gameStart - resets round, maxRound, and runs lights. (click function)
 function gameStart() {
     gameDetail.round = 0;
-    gameDetail.maxRound = 1;
+    gameDetail.maxRound = 0;
     wait();
     runLights();
 }
@@ -61,34 +61,31 @@ function runLights() {
     if (simon.array.length <= gameDetail.maxRound) {
         rndNum();
     } else {
-        showLights();
+        showLights(playerTurn);
     }
 }
 
-// recursive function to iterate through sion.array and pass each entry as an argument to show.
+// recursive function to iterate through simon.array and pass each entry as an argument to show.
 // playerTurn can be used to track and or anonymised x argument. 
 
 function rndNum() {
     simon.currentNum = Math.floor(Math.random() *4);
-    simon.turn++;
     simon.array.push(simon.currentNum);
     runLights();
 }
 
-//function showLights() {
-//    if (player.turn == simon.array.length) {
-//        clearInterval(simonFlash);
-//        allowPress();
-        
-//    } else {
-//        setTimeout(resetPad(), 500);
-//        var simonFlash = setInterval(function(){
-//        var display = document.getElementById("light" + simon.array[player.turn]);
-//        display.setAttribute("class", "flasher");
-//        setTimeout(resetPads(), 500);
-//        player.turn+1;},1000);
-//    } 
-//}
+function showLights(playerTurn) {
+    if (playerTurn >= simon.array.length) {
+        clearInterval(timer);
+        show(playerTurn);
+        allowPress();
+    } else {
+        show(playerTurn);
+        var timer = setTimeout(function(){
+            showLights(playerTurn+1);
+        },500);
+    } 
+}   
 
 function show(playerTurn){ 
     var display = document.getElementById("light" + simon.array[playerTurn]);
