@@ -56,6 +56,13 @@ function allowPress() {
     play();
 }
 
+// random number - push to array - runlights()
+function rndNum() {
+    simon.currentNum = Math.floor(Math.random() *4);
+    simon.array.push(simon.currentNum);
+    runLights();
+}
+
 // check array vs round. rnd number or inputCheck
 function runLights() {
     if (simon.array.length <= gameDetail.maxRound) {
@@ -68,41 +75,30 @@ function runLights() {
 // recursive function to iterate through simon.array and pass each entry as an argument to show.
 // playerTurn can be used to track and or anonymised x argument. 
 
-function rndNum() {
-    simon.currentNum = Math.floor(Math.random() *4);
-    simon.array.push(simon.currentNum);
-    runLights();
-}
 
-function showLights(playerTurn) {
-    if (playerTurn >= simon.array.length) {
-        clearInterval(timer);
-        show(playerTurn);
+
+function showLights(x) {
+    if (x >= simon.array.length) {
+        clearTimeout(timer);
+        show(x);
         allowPress();
     } else {
-        show(playerTurn);
+        show(x);
         var timer = setTimeout(function(){
-            showLights(playerTurn+1);
+            showLights(x+1);
         },500);
     } 
 }   
 
-function show(playerTurn){ 
-    var display = document.getElementById("light" + simon.array[playerTurn]);
-    display.setAttribute("class", "flasher");
-    setTimeout(resetPads,500);
-}
-
-// reset pad lights
-function resetPads() {
-    var pad0 = document.getElementById("light0");
-    pad0.setAttribute("class", "game-box");
-    var pad1 = document.getElementById("light1");
-    pad1.setAttribute("class", "game-box");
-    var pad2 = document.getElementById("light2");
-    pad2.setAttribute("class", "game-box");
-    var pad3 = document.getElementById("light3");
-    pad3.setAttribute("class", "game-box");
+// adds then removes flash class to light pads. 
+function show(x){ 
+    var display = document.getElementById("light" + simon.array[x]);
+    if (display) {
+        display.setAttribute("class", "flasher");
+        setTimeout(function(){
+            display.setAttribute("class", "game-box");
+        },500);
+    }
 }
 
 function userInput() {
@@ -115,7 +111,9 @@ function pad0() {
         player.array.push(0);
         var grnFlash = document.getElementById("light0");
         grnFlash.setAttribute("class", "flasher-yellow");
-        setTimeout(resetPads,100);
+        setTimeout(function(){
+            grnFlash.setAttribute("class", "game-box");
+            },200);
         inputCheck();
     }
 }
@@ -126,7 +124,9 @@ function pad1() {
         player.array.push(1);
         var grnFlash = document.getElementById("light1");
         grnFlash.setAttribute("class", "flasher-blue");
-        setTimeout(resetPads,100);
+        setTimeout(function(){
+            grnFlash.setAttribute("class", "game-box");
+            },200);
         inputCheck();
     }
 }
@@ -137,7 +137,9 @@ function pad2() {
         player.array.push(2);
         var grnFlash = document.getElementById("light2");
         grnFlash.setAttribute("class", "flasher-red");
-        setTimeout(resetPads,100);
+        setTimeout(function(){
+            grnFlash.setAttribute("class", "game-box");
+            },200);
         inputCheck();
     }
 }
@@ -148,7 +150,9 @@ function pad3() {
         player.array.push(3);
         var grnFlash = document.getElementById("light3");
         grnFlash.setAttribute("class", "flasher-green");
-        setTimeout(resetPads,100);
+        setTimeout(function(){
+            grnFlash.setAttribute("class", "game-box");
+            },200);
         inputCheck();
     }
 }
