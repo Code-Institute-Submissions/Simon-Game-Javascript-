@@ -72,11 +72,7 @@ function runLights() {
     }
 }
 
-// recursive function to iterate through simon.array and pass each entry as an argument to show.
-// playerTurn can be used to track and or anonymised x argument. 
-
-
-
+// iterate through simon.array and pass to show()
 function showLights(x) {
     if (x >= simon.array.length) {
         clearTimeout(timer);
@@ -109,6 +105,7 @@ function pad0() {
     if (gameDetail.regButton == true) {
         console.log("you hit pad0");
         player.array.push(0);
+        playerTurn++
         var grnFlash = document.getElementById("light0");
         grnFlash.setAttribute("class", "flasher-yellow");
         setTimeout(function(){
@@ -122,6 +119,7 @@ function pad1() {
     if (gameDetail.regButton == true) {
         console.log("you hit pad1");
         player.array.push(1);
+        playerTurn++
         var grnFlash = document.getElementById("light1");
         grnFlash.setAttribute("class", "flasher-blue");
         setTimeout(function(){
@@ -135,6 +133,7 @@ function pad2() {
     if (gameDetail.regButton == true) {
         console.log("you hit pad2");
         player.array.push(2);
+        playerTurn++
         var grnFlash = document.getElementById("light2");
         grnFlash.setAttribute("class", "flasher-red");
         setTimeout(function(){
@@ -148,6 +147,7 @@ function pad3() {
     if (gameDetail.regButton == true) {
         console.log("you hit pad3");
         player.array.push(3);
+        playerTurn++
         var grnFlash = document.getElementById("light3");
         grnFlash.setAttribute("class", "flasher-green");
         setTimeout(function(){
@@ -166,12 +166,11 @@ function inputCheck() {
 
 // Check for accuracy
 function checkLights() {
-    if (simon.array[simon.turn] == player.array[player.turn]) {
+    if (simon.array[playerTurn-1] == player.array[playerTurn-1]) {
         console.log("win");
 // Add to maxRound and runLights again
         correctFlash();
         winLight();
-
     } else {
         console.log("lose");
 // endGame if incorrect
@@ -203,23 +202,23 @@ function resetBack() {
 
 function winLight() {
     if (player.array.length >= simon.array.length){
-        checkArray();
-    } else {
-        player.turn +1;
-        simon.turn + 1;
+        gameDetail.maxRound++;
+        playerTurn = 0;
+        player.array = [];
+        rndNum();
     }
 }
 
-function checkArray() {
-    if (JSON.stringify(player.array) === JSON.stringify(simon.array)){
-        console.log("winnah!"); 
-        gameDetail.maxRound++;
-        runLights();
-    } else {
-        incorrectFlash();
-        endGame();
-    }
-}
+//function checkArray() {
+//    if (JSON.stringify(player.array) === JSON.stringify(simon.array)){
+//        console.log("winnah!"); 
+//        gameDetail.maxRound++;
+//        runLights();
+//    } else {
+//        incorrectFlash();
+//        endGame();
+//    }
+//}
 
 // endGame Function - output maxRound as score. 
 function endGame() {
