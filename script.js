@@ -111,7 +111,7 @@ function pad0() {
         setTimeout(function(){
             grnFlash.setAttribute("class", "game-box");
             },200);
-        inputCheck();
+        checkLights();
     }
 }
 
@@ -125,7 +125,7 @@ function pad1() {
         setTimeout(function(){
             grnFlash.setAttribute("class", "game-box");
             },200);
-        inputCheck();
+        checkLights();
     }
 }
 
@@ -139,7 +139,7 @@ function pad2() {
         setTimeout(function(){
             grnFlash.setAttribute("class", "game-box");
             },200);
-        inputCheck();
+        checkLights();
     }
 }
 
@@ -153,13 +153,6 @@ function pad3() {
         setTimeout(function(){
             grnFlash.setAttribute("class", "game-box");
             },200);
-        inputCheck();
-    }
-}
-
-//checker player sequence length vs computer sequence
-function inputCheck() {
-    if (player.array.length == simon.array.length) {
         checkLights();
     }
 }
@@ -169,7 +162,6 @@ function checkLights() {
     if (simon.array[playerTurn-1] == player.array[playerTurn-1]) {
         console.log("win");
 // Add to maxRound and runLights again
-        correctFlash();
         winLight();
     } else {
         console.log("lose");
@@ -202,23 +194,15 @@ function resetBack() {
 
 function winLight() {
     if (player.array.length >= simon.array.length){
+        correctFlash();
         gameDetail.maxRound++;
         playerTurn = 0;
         player.array = [];
-        rndNum();
+        setTimeout (function(){
+            rndNum();
+            },1000);
     }
 }
-
-//function checkArray() {
-//    if (JSON.stringify(player.array) === JSON.stringify(simon.array)){
-//        console.log("winnah!"); 
-//        gameDetail.maxRound++;
-//        runLights();
-//    } else {
-//        incorrectFlash();
-//        endGame();
-//    }
-//}
 
 // endGame Function - output maxRound as score. 
 function endGame() {
@@ -242,12 +226,3 @@ function resetTitle() {
     var glitch = document.getElementById("glitch-title");
     glitch.setAttribute("class", "start-btn");
 }
-
-// winRound - add to turn and run lights
-function winRound() {
-    player.turn++;
-    simon.turn++;
-    gameDetail.maxRound++;
-    runLights();
-}
-
