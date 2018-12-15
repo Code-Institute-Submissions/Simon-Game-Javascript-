@@ -46,6 +46,11 @@ function correctText() {
     correct.innerHTML = ("C0RRECT");    
 }
 
+function tryAgain() {
+    var tryagn = document.getElementById("glitch-title");
+    tryagn.innerHTML = ("TRY 4GA1N");
+}
+
 function gameOver() {
     var over = document.getElementById("glitch-title");
     over.innerHTML = ("G4ME 0VER");
@@ -206,8 +211,17 @@ function winLight() {
 
 // endGame Function - output maxRound as score. 
 function endGame() {
-    var score  = document.getElementById("game-round");
-    score.innerHTML = ("M4X R0UND " + gameDetail.maxRound);
+    if (gameDetail.altMode == true){
+        var score  = document.getElementById("game-round");
+        score.innerHTML = ("M4X R0UND " + gameDetail.maxRound);
+    } else {
+        playerTurn = 0;
+        player.array = [];
+        tryAgain()
+        setTimeout (function(){
+            showLights(playerTurn);
+            },1000);
+    }
 }
 
 // red glitch effect on load (also setup event listeners on load)

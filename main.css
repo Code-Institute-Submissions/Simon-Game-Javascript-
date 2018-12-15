@@ -30,6 +30,23 @@
     text-align: center;
     font-weight: 100;    
 }
+/*-------- reset ----------*/
+.reset-btn {
+    width: 100%;
+    font-family: 'Audiowide', cursive;
+    font-size: 20pt;
+    text-align: center;
+    font-weight: 100;    
+}
+
+.reset-box {
+    width: 100%;
+    height : 40px;
+    margin-left:5%;
+    margin-right: 5%;
+    border-width: 2px;
+    border-style: solid
+}
 
 /*-------- Section --------*/
 #wrapper {
