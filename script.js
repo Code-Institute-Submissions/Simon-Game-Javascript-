@@ -22,20 +22,36 @@ var playerTurn = 0;
 function gameStart() {
     gameDetail.round = 0;
     gameDetail.maxRound = 0;
+    roundUpdate();
     wait();
     runLights();
 }
+
+function gameReset() {
+    gameDetail.round = 0;
+    gameDetail.maxRound = 0;
+    roundUpdate()
+    simon.array = [];
+    wait();
+    runLights();
+    
+}
+
 // game board readout functions. 
 function wait() {
     var wait = document.getElementById("glitch-title");
     wait.innerHTML = ("WA1T");
+}
+function roundUpdate() {
+    var round  = document.getElementById("game-round");
+    round.innerHTML = ("R0UND " + (gameDetail.maxRound+1));
 }
 
 function blink() {
     var blink = document.getElementById("glitch-title");
     blink.innerHTML = ("----");
 }
-
+// board text updates. 
 function play() {
     var play = document.getElementById("glitch-title");
     play.innerHTML = ("PL4Y");    
@@ -54,6 +70,11 @@ function tryAgain() {
 function gameOver() {
     var over = document.getElementById("glitch-title");
     over.innerHTML = ("G4ME 0VER");
+}
+
+function congratulations() {
+    var winner = document.getElementById("glitch-title");
+    winner.innerHTML = ("C0NGR4T5");     
 }
 // enable button presses
 function allowPress() {
@@ -199,13 +220,18 @@ function resetBack() {
 
 function winLight() {
     if (player.array.length >= simon.array.length){
-        correctFlash();
-        gameDetail.maxRound++;
-        playerTurn = 0;
-        player.array = [];
-        setTimeout (function(){
-            rndNum();
-            },1000);
+        if (simon.array.length < 20) {
+            correctFlash();
+            gameDetail.maxRound++;
+            roundUpdate();
+            playerTurn = 0;
+            player.array = [];
+            setTimeout (function(){
+                rndNum();
+                },1000);
+        } else if (simon.array.length == 20) {
+            congratulations();
+        }
     }
 }
 
