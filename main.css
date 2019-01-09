@@ -14,6 +14,14 @@
     font-weight: 100;
 }
 
+#mode-button {
+    width: 100%;
+    font-family: 'Audiowide', cursive;
+    font-size: 16pt;
+    text-align: center;
+    font-weight: 100;
+}
+
 .start-btn1 {
     font-family: 'Audiowide', cursive;
     font-size: 20pt;

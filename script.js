@@ -37,6 +37,31 @@ function gameReset() {
     
 }
 
+// mode button & functions
+
+function modeChange() {
+    if (gameDetail.regButton == false)
+        if (gameDetail.altMode == false) {
+            modeHard()
+        } else {
+            modeStandard()
+        }
+    }
+
+
+function modeHard() {
+    gameDetail.altMode = true;
+    var hard = document.getElementById("mode-button");
+    hard.innerHTML = ("H4RD M0D3");
+}
+
+function modeStandard() {
+    gameDetail.altMode = false;
+    var standard = document.getElementById("mode-button");
+    standard.innerHTML = ("ST4ND4RD M0D3");
+}
+
+
 // game board readout functions. 
 function wait() {
     var wait = document.getElementById("glitch-title");
@@ -129,7 +154,7 @@ function userInput() {
 //pad entry functions
 function pad0() {
     if (gameDetail.regButton == true) {
-        console.log("you hit pad0");
+        playPad0();
         player.array.push(0);
         playerTurn++
         var grnFlash = document.getElementById("light0");
@@ -181,6 +206,12 @@ function pad3() {
             },200);
         checkLights();
     }
+}
+
+// sound functions
+function playPad0() {
+    var sound0 = new Audio("Sounds/0.aif");
+    sound0.play();
 }
 
 // Check for accuracy
