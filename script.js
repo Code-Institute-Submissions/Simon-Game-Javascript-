@@ -30,7 +30,7 @@ function gameStart() {
 function gameReset() {
     gameDetail.round = 0;
     gameDetail.maxRound = 0;
-    roundUpdate()
+    roundUpdate();
     simon.array = [];
     wait();
     runLights();
@@ -42,9 +42,9 @@ function gameReset() {
 function modeChange() {
     if (gameDetail.regButton == false)
         if (gameDetail.altMode == false) {
-            modeHard()
+            modeHard();
         } else {
-            modeStandard()
+            modeStandard();
         }
     }
 
@@ -125,6 +125,7 @@ function runLights() {
 
 // iterate through simon.array and pass to show()
 function showLights(x) {
+    gameDetail.regButton = false;
     if (x >= simon.array.length) {
         clearTimeout(timer);
         show(x);
@@ -148,15 +149,12 @@ function show(x){
     }
 }
 
-function userInput() {
-}
-
 //pad entry functions
 function pad0() {
     if (gameDetail.regButton == true) {
         playPad0();
         player.array.push(0);
-        playerTurn++
+        playerTurn++;
         var grnFlash = document.getElementById("light0");
         grnFlash.setAttribute("class", "flasher-yellow");
         setTimeout(function(){
@@ -170,7 +168,7 @@ function pad1() {
     if (gameDetail.regButton == true) {
         console.log("you hit pad1");
         player.array.push(1);
-        playerTurn++
+        playerTurn++;
         var grnFlash = document.getElementById("light1");
         grnFlash.setAttribute("class", "flasher-blue");
         setTimeout(function(){
@@ -184,7 +182,7 @@ function pad2() {
     if (gameDetail.regButton == true) {
         console.log("you hit pad2");
         player.array.push(2);
-        playerTurn++
+        playerTurn++;
         var grnFlash = document.getElementById("light2");
         grnFlash.setAttribute("class", "flasher-red");
         setTimeout(function(){
@@ -198,7 +196,7 @@ function pad3() {
     if (gameDetail.regButton == true) {
         console.log("you hit pad3");
         player.array.push(3);
-        playerTurn++
+        playerTurn++;
         var grnFlash = document.getElementById("light3");
         grnFlash.setAttribute("class", "flasher-green");
         setTimeout(function(){
@@ -274,10 +272,10 @@ function endGame() {
     } else {
         playerTurn = 0;
         player.array = [];
-        tryAgain()
-        setTimeout (function(){
+        tryAgain();
+        setTimeout(function(){
             showLights(playerTurn);
-            },1000);
+            },1500);
     }
 }
 
