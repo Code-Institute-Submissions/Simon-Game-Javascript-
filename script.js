@@ -18,23 +18,17 @@ var simon = {
 
 var playerTurn = 0;
 
-// gameStart - resets round, maxRound, and runs lights. (click function)
-function gameStart() {
+// gameStart/reset - resets round, maxRound, and runs lights. (click function with 0 as reset argument)
+function gameStart(x) {
     gameDetail.round = 0;
     gameDetail.maxRound = 0;
     roundUpdate();
+    if (x == 0){
+        simon.array = [];
+    }
     wait();
     runLights();
-}
 
-function gameReset() {
-    gameDetail.round = 0;
-    gameDetail.maxRound = 0;
-    roundUpdate();
-    simon.array = [];
-    wait();
-    runLights();
-    
 }
 
 // mode button & functions
