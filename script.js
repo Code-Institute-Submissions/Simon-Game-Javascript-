@@ -26,7 +26,7 @@ function gameStart(x) {
     if (x == 0){
         simon.array = [];
     }
-    wait();
+    boardMessage("W4IT");
     runLights();
 
 }
@@ -55,50 +55,22 @@ function modeStandard() {
     standard.innerHTML = ("ST4ND4RD M0D3");
 }
 
-
-// game board readout functions. 
-function wait() {
-    var wait = document.getElementById("glitch-title");
-    wait.innerHTML = ("WA1T");
-}
+// round advance + update game board readout. 
 function roundUpdate() {
     var round  = document.getElementById("game-round");
     round.innerHTML = ("R0UND " + (gameDetail.maxRound+1));
 }
 
-function blink() {
-    var blink = document.getElementById("glitch-title");
-    blink.innerHTML = ("----");
-}
-// board text updates. 
-function play() {
-    var play = document.getElementById("glitch-title");
-    play.innerHTML = ("PL4Y");    
+// game board readout functions. 
+function boardMessage(x) {
+    var board = document.getElementById("glitch-title");
+    board.innerHTML = (x);
 }
 
-function correctText() {
-    var correct = document.getElementById("glitch-title");
-    correct.innerHTML = ("C0RRECT");    
-}
-
-function tryAgain() {
-    var tryagn = document.getElementById("glitch-title");
-    tryagn.innerHTML = ("TRY 4GA1N");
-}
-
-function gameOver() {
-    var over = document.getElementById("glitch-title");
-    over.innerHTML = ("G4ME 0VER");
-}
-
-function congratulations() {
-    var winner = document.getElementById("glitch-title");
-    winner.innerHTML = ("C0NGR4T5");     
-}
 // enable button presses
 function allowPress() {
     gameDetail.regButton = true;
-    play();
+    boardMessage("PL4Y");
 }
 
 // random number - push to array - runlights()
@@ -146,7 +118,6 @@ function show(x){
 //pad entry functions
 function pad0() {
     if (gameDetail.regButton == true) {
-        playPad0();
         player.array.push(0);
         playerTurn++;
         var grnFlash = document.getElementById("light0");
@@ -200,23 +171,19 @@ function pad3() {
     }
 }
 
-// sound functions
-function playPad0() {
-    var sound0 = new Audio("Sounds/0.aif");
-    sound0.play();
-}
-
 // Check for accuracy
 function checkLights() {
     if (simon.array[playerTurn-1] == player.array[playerTurn-1]) {
         console.log("win");
+
 // Add to maxRound and runLights again
         winLight();
     } else {
         console.log("lose");
+
 // endGame if incorrect
         incorrectFlash();
-        gameOver();
+        boardMessage("G4ME 0VER");
         endGame();
        }
     }
@@ -225,16 +192,18 @@ function checkLights() {
 function correctFlash() {
     var flash = document.getElementById("b-ground");
     flash.setAttribute("class", "b-green");
-    correctText();
+    boardMessage("C0RRECT");
     setTimeout(resetBack, 100);
     
 }
+
 // red flash background for erroneous presses
 function incorrectFlash() {
     var flash = document.getElementById("b-ground");
     flash.setAttribute("class", "b-red");
     setTimeout(resetBack, 100);
 }
+
 // reset background colour
 function resetBack() {
     var flash = document.getElementById("b-ground");
@@ -253,7 +222,7 @@ function winLight() {
                 rndNum();
                 },1000);
         } else if (simon.array.length == 20) {
-            congratulations();
+            boardMessage("C0NGR4T5");
         }
     }
 }
@@ -266,7 +235,7 @@ function endGame() {
     } else {
         playerTurn = 0;
         player.array = [];
-        tryAgain();
+        boardMessage("TRY 4GA1N");
         setTimeout(function(){
             showLights(playerTurn);
             },1500);
