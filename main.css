@@ -138,7 +138,7 @@
     border-style: solid;
     background-color: black ;
 }
-.flasher-yellow {
+.flasher0 {
     width: 40%;
     height : 150px;
     margin: 1.5% auto 1.5% auto;
@@ -147,7 +147,7 @@
     background-color: yellow ;
 }
 
-.flasher-blue {
+.flasher1 {
     width: 40%;
     height : 150px;
     margin: 1.5% auto 1.5% auto;
@@ -155,7 +155,7 @@
     border-style: solid;
     background-color: blue ;
 }
-.flasher-red {
+.flasher2d {
     width: 40%;
     height : 150px;
     margin: 1.5% auto 1.5% auto;
@@ -163,7 +163,7 @@
     border-style: solid;
     background-color: red ;
 }
-.flasher-green {
+.flasher3 {
     width: 40%;
     height : 150px;
     margin: 1.5% auto 1.5% auto;

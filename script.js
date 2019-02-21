@@ -116,56 +116,14 @@ function show(x){
 }
 
 //pad entry functions
-function pad0() {
+function pad(x) {
     if (gameDetail.regButton == true) {
-        player.array.push(0);
+        player.array.push(x);
         playerTurn++;
-        var grnFlash = document.getElementById("light0");
-        grnFlash.setAttribute("class", "flasher-yellow");
+        var flash = document.getElementById("light"+x);
+        flash.setAttribute("class", "flasher"+x);
         setTimeout(function(){
-            grnFlash.setAttribute("class", "game-box");
-            },200);
-        checkLights();
-    }
-}
-
-function pad1() {
-    if (gameDetail.regButton == true) {
-        console.log("you hit pad1");
-        player.array.push(1);
-        playerTurn++;
-        var grnFlash = document.getElementById("light1");
-        grnFlash.setAttribute("class", "flasher-blue");
-        setTimeout(function(){
-            grnFlash.setAttribute("class", "game-box");
-            },200);
-        checkLights();
-    }
-}
-
-function pad2() {
-    if (gameDetail.regButton == true) {
-        console.log("you hit pad2");
-        player.array.push(2);
-        playerTurn++;
-        var grnFlash = document.getElementById("light2");
-        grnFlash.setAttribute("class", "flasher-red");
-        setTimeout(function(){
-            grnFlash.setAttribute("class", "game-box");
-            },200);
-        checkLights();
-    }
-}
-
-function pad3() {
-    if (gameDetail.regButton == true) {
-        console.log("you hit pad3");
-        player.array.push(3);
-        playerTurn++;
-        var grnFlash = document.getElementById("light3");
-        grnFlash.setAttribute("class", "flasher-green");
-        setTimeout(function(){
-            grnFlash.setAttribute("class", "game-box");
+            flash.setAttribute("class", "game-box");
             },200);
         checkLights();
     }
@@ -247,10 +205,6 @@ window.onload = function() {
     var glitch = document.getElementById("glitch-title");
     glitch.setAttribute("class", "start-btn1");
     setTimeout(resetTitle, 50);
-    document.getElementById("light0").addEventListener("click", pad0);
-    document.getElementById("light1").addEventListener("click", pad1);
-    document.getElementById("light2").addEventListener("click", pad2);
-    document.getElementById("light3").addEventListener("click", pad3);
 };
 
 // glitch reset
