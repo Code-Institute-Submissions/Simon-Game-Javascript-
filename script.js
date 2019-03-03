@@ -111,7 +111,7 @@ function show(x){
         display.setAttribute("class", "flasher");
         setTimeout(function(){
             display.setAttribute("class", "game-box");
-        },500);
+        },450); // show gap between flashes. 
     }
 }
 
