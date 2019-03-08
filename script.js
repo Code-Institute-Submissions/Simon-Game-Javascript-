@@ -8,12 +8,12 @@ var gameDetail = {
 
 var player = {
     currentNum : 0,
-    array : [],
+    sequence : [],
 };
 
 var simon = {
     currentNum : 0,
-    array : [],
+    sequence : [],
 };
 
 var playerTurn = 0;
@@ -24,7 +24,7 @@ function gameStart(x) {
     gameDetail.maxRound = 0;
     roundUpdate();
     if (x == 0){
-        simon.array = [];
+        simon.sequence = [];
     }
     boardMessage("W4IT");
     runLights();
@@ -76,23 +76,23 @@ function allowPress() {
 // random number - push to array - runlights()
 function rndNum() {
     simon.currentNum = Math.floor(Math.random() *4);
-    simon.array.push(simon.currentNum);
+    simon.sequence.push(simon.currentNum);
     runLights();
 }
 
 // check array vs round. rnd number or inputCheck
 function runLights() {
-    if (simon.array.length <= gameDetail.maxRound) {
+    if (simon.sequence.length <= gameDetail.maxRound) {
         rndNum();
     } else {
         showLights(playerTurn);
     }
 }
 
-// iterate through simon.array and pass to show()
+// iterate through simon.sequence and pass to show()
 function showLights(x) {
     gameDetail.regButton = false;
-    if (x >= simon.array.length) {
+    if (x >= simon.sequence.length) {
         clearTimeout(timer);
         show(x);
         allowPress();
@@ -106,7 +106,7 @@ function showLights(x) {
 
 // adds then removes flash class to light pads. 
 function show(x){ 
-    var display = document.getElementById("light" + simon.array[x]);
+    var display = document.getElementById("light" + simon.sequence[x]);
     if (display) {
         display.setAttribute("class", "flasher");
         setTimeout(function(){
@@ -118,7 +118,7 @@ function show(x){
 //pad entry functions
 function pad(x) {
     if (gameDetail.regButton == true) {
-        player.array.push(x);
+        player.sequence.push(x);
         playerTurn++;
         var flash = document.getElementById("light"+x);
         flash.setAttribute("class", "flasher"+x);
@@ -131,7 +131,7 @@ function pad(x) {
 
 // Check for accuracy
 function checkLights() {
-    if (simon.array[playerTurn-1] == player.array[playerTurn-1]) {
+    if (simon.sequence[playerTurn-1] == player.sequence[playerTurn-1]) {
         console.log("win");
 
 // Add to maxRound and runLights again
@@ -169,17 +169,17 @@ function resetBack() {
 }
 
 function winLight() {
-    if (player.array.length >= simon.array.length){
-        if (simon.array.length < 20) {
+    if (player.sequence.length >= simon.sequence.length){
+        if (simon.sequence.length < 20) {
             correctFlash();
             gameDetail.maxRound++;
             roundUpdate();
             playerTurn = 0;
-            player.array = [];
+            player.sequence = [];
             setTimeout (function(){
                 rndNum();
                 },1000);
-        } else if (simon.array.length == 20) {
+        } else if (simon.sequence.length == 20) {
             boardMessage("C0NGR4T5");
         }
     }
@@ -192,7 +192,7 @@ function endGame() {
         score.innerHTML = ("M4X R0UND " + gameDetail.maxRound);
     } else {
         playerTurn = 0;
-        player.array = [];
+        player.sequence = [];
         boardMessage("TRY 4GA1N");
         setTimeout(function(){
             showLights(playerTurn);
