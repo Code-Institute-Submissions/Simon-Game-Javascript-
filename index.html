@@ -14,23 +14,26 @@
         <p class="game-title">S1M0N</p>
     </header>
     <section>
+        <!-- container for game board -->
         <div id="mode-button" onclick="modeChange()">ST4ND4RD M0D3</div>
         <div id="wrapper">
             <div id="b-ground">
+        <!-- Top row of pads -->
                 <div class="row pad-container">
                     <div class="game-box" id="light0" onclick="pad(0)"></div>
                     <div class="game-box" id="light1" onclick="pad(1)"></div>
                 </div>
+        <!-- score board -->
                 <div class="row score-container">
                     <div class="score-box" onclick="gameStart()" >
                         <h4 class="start-btn" id="glitch-title"> Cl1CK T0 ST4RT</h4>
                         <h2 id="game-round">0</h2>
                     </div>
                         <div class="reset-box" onclick="gameStart(0)" >
-                        <h4 class="reset-btn" id="glitch-title">R3S3T</h4>
+                        <h4 class="reset-btn" id="reset-button">R3S3T</h4>
                     </div>
                 </div>
-
+        <!-- bottom row of pads -->
                 <div class="row pad-container">
                     <div class="game-box" id="light2" onclick="pad(2)"></div>
                     <div class="game-box" id="light3" onclick="pad(3)"></div>

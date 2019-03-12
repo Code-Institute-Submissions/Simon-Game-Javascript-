@@ -21,6 +21,8 @@ Access to the mode button is locked when in the middle of a game.
 #### Reset
 The reset button starts the game afresh from Round 1. It was implemented via reuse of the gameStart function - this time passing an argument of "x" in order to differentiate from the 2 slightly different calls.
 
+#### Feedback
+feedback is delivered via the center of the game board. Messages advise the user to wait whilst the sequence is run, will advise of correct / incorrect guesses and other functions to keep the player updated. 
 
 ## Technologies Used    
 
@@ -34,7 +36,9 @@ I have included a scan of the early pseudocode for the Javascript logic.
 
 ## Testing
 
-"Project Testing.doc" has a full breakdown of the testing via Jasmine and other methods. 
+The project was tested for responsivity on multiple screen sizes. The CSS, and HTML was checked via the w3 online tools.
+Jasmine testing was carried out predominantly on the randum number generation functions - https://c9.io/andrewporritt/jasminetestingsimon
 
 ## Deployment 
 
+The project is deployed via Github pages at the following link - https://andrewporritt77.github.io/Simon-Game-Javascript-/

@@ -39,8 +39,8 @@ function modeChange() {
             modeHard();
         } else {
             modeStandard();
-        }
     }
+}
 
 
 function modeHard() {
@@ -132,19 +132,17 @@ function pad(x) {
 // Check for accuracy
 function checkLights() {
     if (simon.sequence[playerTurn-1] == player.sequence[playerTurn-1]) {
-        console.log("win");
 
 // Add to maxRound and runLights again
         winLight();
     } else {
         console.log("lose");
-
 // endGame if incorrect
         incorrectFlash();
         boardMessage("G4ME 0VER");
         endGame();
-       }
     }
+}
     
 // green flash background for correct button press
 function correctFlash() {
@@ -152,7 +150,6 @@ function correctFlash() {
     flash.setAttribute("class", "b-green");
     boardMessage("C0RRECT");
     setTimeout(resetBack, 100);
-    
 }
 
 // red flash background for erroneous presses
